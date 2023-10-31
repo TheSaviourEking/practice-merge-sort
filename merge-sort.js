@@ -14,24 +14,19 @@ function mergeSort(arr) {
   let leftHalfArr = arr.slice(0, mid);
   leftHalfArr = mergeSort(leftHalfArr);
 
-  // console.log(leftHalfArr, 'left')
   // Recursively sort the right half
   let rightHalfArr = arr.slice(mid);
   rightHalfArr = mergeSort(rightHalfArr);
-  // console.log(rightHalfArr, 'right')
-  // console.log(mergeSort(rightHalfArr), 'right')
 
   // Merge the halves together and return
   return merge(leftHalfArr, rightHalfArr);
 }
 
-
 // Takes in two sorted arrays and returns them merged into one
 function merge(arrA, arrB) {
 
   // Create an empty return array
-  // const result = new Array(arrA.length + arrB.length);
-  const result = [];
+  const result = new Array(arrA.length + arrB.length);
 
   // Point to the first value of each array
   let i = 0, j = 0, k = 0;
@@ -40,35 +35,36 @@ function merge(arrA, arrB) {
     // Compare the first values of each array
     if (arrA[i] < arrB[j]) {
       // Add the smaller value to the return array
-      // result[k] = arrA[i];
-      result.push(arrA[i])
+      result[k] = arrA[i];
       i++;
     } else {
-      // result[k] = arrB[j];
-      result.push(arrB[j]);
+      result[k] = arrB[j];
       j++;
     }
     // Move the pointer to the next value in that array
-    // k++;
+    k++;
   }
 
   while (i < arrA.length) {
-    result.push(arrA[i]);
+    result[k] = arrA[i]
     i++;
+    k++;
   }
 
   while (j < arrB.length) {
-    result.push(arrB[j]);
+    result[k] = arrB[j];
     j++;
+    k++;
   }
 
   // Return the return array
-  // console.log(result, 'RESULT');
   return result;
 }
 const arr = [2, 4, 6, 8, 1, 3, 5, 7, 9];
 // const arr = [2, 7, 3];
+console.log(arr)
 console.log(mergeSort(arr));
+console.log(arr)
 // mergeSort(arr);
 
 module.exports = [merge, mergeSort];
